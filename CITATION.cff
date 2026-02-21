@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+title: "Paper Replicate Agent Demo"
+message: "If you use this software, please cite it as below."
+type: software
+authors:
+  - family-names: Zhu
+    given-names: Chen
+    affiliation: China Agricultural University
+version: 1.0.0
+date-released: 2026-02-21
+url: "https://github.com/maxwell2732/paper-replicate-agent-demo"
+license: MIT
