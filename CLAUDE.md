@@ -102,6 +102,7 @@ python scripts/quality_score.py replications/[PaperName]/R/replicate.R
 | Paper | Status | Targets | Pass | Fail | Notes |
 |-------|--------|---------|------|------|-------|
 | Gracner et al. (2024) | IN PROGRESS | — | — | — | Sugar tax, UKB |
+| Fu et al. (2024) | **COMPLETE — score 82/100 ✓** | `quality_reports/FuEtal2024_replication_targets.md` | sat_qual EXACT; acc_trouble CLOSE; all 8 event-study years ✓; parallel trends ✓ | N +3.1%; fin_burden/sat_spec attenuated | Clears 80 gate; residual gap = unknown research-file exclusion |
 
 ---
 
