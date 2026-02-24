@@ -70,3 +70,21 @@ When a mistake is corrected, append a `[LEARN:category]` entry below.
 [LEARN:meta] Dogfooding principles must be enforced: plan-first, spec-then-plan, quality gates, session logs → we follow our own guide.
 
 [LEARN:meta] Template development work (building infrastructure, docs) doesn't create session logs in quality_reports/ → those are for user work (slides, analysis), not meta-work. Keeps template clean for users who fork.
+
+## R Coding Patterns
+
+[LEARN:r-coding] `coeftest()` returns a matrix with class attributes, NOT a data frame. Never use `as.data.frame(coeftest(...))` — rownames are lost. Always index directly: `ct[idx, "Estimate"]`, `ct[idx, "Std. Error"]`, etc. where `idx <- which(rownames(ct) == term_name)`.
+
+[LEARN:r-coding] ggplot2 named color palette collision: `c("Label" = PAL["name"])` preserves the inner vector name, causing "No shared levels found" warnings. Fix: always `unname(PAL["name"])` before wrapping in `scale_color_manual(values = c("Label" = unname(PAL["name"])))`.
+
+[LEARN:r-coding] Event-study HC1 rank deficiency (silent 2022 drop): when high-NA factor covariates (`edu_f`, `bmi_cat`) cause listwise deletion, `vcovHC(type="HC1")` silently drops the last interaction term (latest year). `lm()` shows rank 30/30 and 0 aliased, yet `coeftest()` is missing the year. Fix: use a separate `event_covs` string without those high-NA factors for `event_formula()` only; keep full `base_covs` for DiD formula.
+
+[LEARN:r-coding] R on Windows via bash (Claude Code): use `powershell.exe -Command "& 'C:\Program Files\R\R-4.5.2\bin\Rscript.exe' 'script.R'"`. Always prepend user library at top of every R script: `.libPaths(c(file.path(Sys.getenv("USERPROFILE"), "R", "win-library", "4.5"), .libPaths()))`.
+
+## Replication Methodology
+
+[LEARN:replication] N over-count in DiD: first check whether the enrollment/insurance variable has a stricter continuous/full-year variant (e.g., `ins_ma` vs `ins_ma2`). The stricter variant often matches the paper's "full-year enrollees" definition and can close a 10–15% N gap.
+
+[LEARN:replication] Residual N gaps after exhaustive filter testing (usually ~3%) most likely reflect an unpublished data-quality exclusion in the research-grade file (e.g., withdrawal list) not available in the PUF. Document this as unavoidable; verify that ADRD share and DiD direction are preserved.
+
+[LEARN:replication] When testing N-filter combinations for MCBS-style DiD studies, systematically audit: MA variant × years-enrolled threshold × dual-eligibility × FFS exclusion × community-dwelling — in that order. Use a `build_sample()` helper that accepts the MA variable as a parameter.
