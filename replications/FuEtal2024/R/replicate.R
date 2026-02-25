@@ -52,7 +52,7 @@ suppressPackageStartupMessages({
 set.seed(20260223)
 
 # ── Paths ──────────────────────────────────────────────────────────────────────
-DATA_PATH   <- "C:/Users/xc77/Downloads/MCBS_PUF_all_years.dta"
+DATA_PATH   <- here("data", "MCBS_PUF_all_years.dta")
 RESULTS_DIR <- here("replications", "FuEtal2024", "R", "results")
 FIGURES_DIR <- here("replications", "FuEtal2024", "R", "figures")
 dir.create(RESULTS_DIR, recursive = TRUE, showWarnings = FALSE)
