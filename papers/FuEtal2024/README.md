@@ -2,11 +2,16 @@
 
 **Title:** Risk Adjustment for ADRD in Medicare Advantage and Health Care Experiences
 
-**Journal:** TBD (preprint / working paper as of 2026-02-23)
+**Journal:** GLO Discussion Paper No. 1716, Global Labor Organization (2026)
+
+**Authors' software:** Stata 19.5 with `reghdfe`
+
+**Official replication package:** `C:\Users\xc77\Dropbox\replication_pkg`
 
 **Files:**
 - `manuscript.docx` — Main manuscript
 - `supplement.docx` — Supplementary materials (eMethods, eFigures, eTables)
+- `GLO-DP-1716.pdf` — Published GLO Discussion Paper PDF
 
 ---
 
@@ -44,7 +49,7 @@ formula in 2020 as a quasi-natural experiment.
 
 | Concept | MCBS Variable | Notes |
 |---------|--------------|-------|
-| MA enrollment | `ins_ma` | 44,077 MA observations in full PUF |
+| MA enrollment | `ins_ma` / `ins_ma2` | 44,077 MA observations in full PUF; official code uses `ins_ma2 == 1` (confirmed in `global.do`) |
 | ADRD | `hlth_adrd` | = `HLT_ALZDEM`; captures Alzheimer's (may miss related dementias) |
 | Stroke/brain hemorrhage | `HLT_OCSTROKE` | No separate hemorrhage variable in PUF |
 | Paralysis | `HLT_OCPPARAL` | Combined complete + partial |

@@ -2,8 +2,25 @@
 
 **Paper:** "Risk Adjustment for ADRD in Medicare Advantage and Health Care Experiences"
 **Authors:** Fu, Qian, Karimi, Zarei & Chen
-**Date recorded:** 2026-02-23
+**GLO Discussion Paper:** No. 1716 (2026), Global Labor Organization
+**Date recorded:** 2026-02-24
 **Data:** MCBS Public Use Files 2015–2022 (`data/MCBS_PUF_all_years.dta`)
+**Official replication package:** `C:\Users\xc77\Dropbox\replication_pkg`
+**Software (authors' original):** Stata 19.5, `reghdfe`
+
+---
+
+## Official Replication Package (authors' code)
+
+- **Location:** `C:\Users\xc77\Dropbox\replication_pkg`
+- **Software:** Stata 19.5
+- **Key files:**
+  - `code/analysis/global.do` — sample construction globals
+  - `code/analysis/reg-02-DD-MCBS-Robust-using_stroke_as_control.do` — main DID
+  - `code/analysis/reg-03-ES-MCBS-Robust-using_stroke_as_control.do` — event study
+  - `data_clean/MCBS_PUF_all_years.dta` — 340 MB dataset (same as `data/MCBS_PUF_all_years.dta`)
+- **Estimator:** `reghdfe` with covariate-year and covariate-proxy interactions absorbed as FE
+- **SE:** Heteroskedasticity-robust (HC1 equivalent in Stata)
 
 ---
 
@@ -41,6 +58,51 @@
 
 ---
 
+## eTable 1: Raw Outcome Means by Treatment Group and Year
+
+### Panel A: Control Group (MA with Stroke/Paralysis/PD, no ADRD)
+
+| Year | ls_trb_care | payment2 | access_sp | sat_quality |
+|------|-------------|----------|-----------|-------------|
+| 2015 | 0.067 | NA | 0.935 | 0.963 |
+| 2016 | 0.085 | NA | 0.943 | 0.940 |
+| 2017 | 0.111 | 0.326 | 0.927 | 0.937 |
+| 2018 | 0.099 | 0.286 | 0.926 | 0.931 |
+| 2019 | 0.091 | 0.268 | 0.926 | 0.935 |
+| 2020 | 0.125 | 0.229 | 0.937 | 0.909 |
+| 2021 | 0.116 | 0.199 | 0.913 | 0.932 |
+| 2022 | 0.125 | 0.225 | 0.919 | 0.920 |
+
+### Panel B: Treatment Group (MA with ADRD)
+
+| Year | ls_trb_care | payment2 | access_sp | sat_quality |
+|------|-------------|----------|-----------|-------------|
+| 2015 | 0.073 | NA | 0.903 | 0.948 |
+| 2016 | 0.071 | NA | 0.918 | 0.956 |
+| 2017 | 0.105 | 0.227 | 0.909 | 0.928 |
+| 2018 | 0.094 | 0.256 | 0.914 | 0.939 |
+| 2019 | 0.109 | 0.249 | 0.889 | 0.941 |
+| 2020 | 0.085 | 0.139 | 0.906 | 0.918 |
+| 2021 | 0.064 | 0.120 | 0.913 | 0.926 |
+| 2022 | 0.089 | 0.155 | 0.915 | 0.877 |
+
+*Note: payment2 (financial burden) NA for 2015–2016 (question not available until 2017)*
+
+---
+
+## eTable 2: Pre/Post Summary by Treatment Group
+
+| Outcome | ADRD Pre-2020 | ADRD Post-2020 | Control Pre-2020 | Control Post-2020 |
+|---------|---------------|----------------|------------------|-------------------|
+| ls_trb_care | 0.093 (0.290) | 0.080 (0.271) | 0.093 (0.290) | 0.122 (0.328) |
+| payment2 | 0.244 (0.430) | 0.138 (0.345) | 0.291 (0.455) | 0.217 (0.413) |
+| access_sp | 0.906 (0.292) | 0.911 (0.285) | 0.931 (0.254) | 0.922 (0.268) |
+| sat_quality | 0.942 (0.235) | 0.907 (0.291) | 0.939 (0.240) | 0.920 (0.271) |
+
+*SD in parentheses*
+
+---
+
 ## Figure 3: Main DiD Estimates (Treatment × Post coefficient)
 
 **Model:** LPM, HC1 robust SEs
@@ -57,7 +119,7 @@
 
 ---
 
-## Figure 4 / eTable 1: Event Study Coefficients (reference year = 2019)
+## Figure 4 / eTable 3: Event Study Coefficients (reference year = 2019)
 
 ### Outcome 1: Any Trouble Accessing Care (N=5,339)
 
@@ -72,9 +134,9 @@
 | 2021 | **−0.0989** | 0.0421 | **0.019** | [−0.181, −0.016] |
 | 2022 | −0.0909 | 0.0471 | 0.054 | [−0.183, +0.001] |
 
-*Note: eTable 1 in supplement contains typo — negative upper CI bounds for pre-2020 years.
-Correct upper bounds should be positive (e.g., 2015: +0.043, not −0.0433). These values
-are the correct targets.*
+*Note: eTable 3 in supplement (published GLO DP No. 1716) contains typo — negative upper CI for 2015.
+Printed as −0.0433; correct value = +0.0433. Typo confirmed present in final publication.
+No impact on point estimates. These tables show the correct targets.*
 
 ### Outcome 2: Medical Financial Burden (N=4,172; 2017+ only)
 
@@ -115,6 +177,22 @@ are the correct targets.*
 
 ---
 
+## eFigure 7: Alternative Control Group Robustness (from supplement text)
+
+| Control Group | Outcome | Coef | 95% CI | p |
+|---------------|---------|------|--------|---|
+| Drop PD | acc_trouble | −0.068 | [−0.113, −0.022] | 0.004 |
+| Drop PD | fin_burden | −0.092 | [−0.161, −0.023] | 0.009 |
+| Drop PD | sat_spec | +0.040 | [−0.005, +0.085] | 0.084 |
+| Drop PD | sat_qual | −0.013 | [−0.056, +0.029] | 0.544 |
+| Stroke only | acc_trouble | −0.055 | [−0.102, −0.009] | 0.020 |
+| Stroke only | fin_burden | −0.093 | [−0.163, −0.022] | 0.010 |
+| Stroke only | sat_spec | +0.028 | [−0.018, +0.074] | 0.239 |
+| Stroke only | sat_qual | −0.025 | [−0.069, +0.018] | 0.259 |
+| Paralysis only | acc_trouble | −0.114 | [−0.185, −0.043] | 0.002 |
+
+---
+
 ## eFigure 8: Stratification Results (selected)
 
 | Subgroup | Outcome | DiD Coeff | 95% CI |
@@ -139,7 +217,7 @@ are the correct targets.*
 | Brain hemorrhage not separately identified | No standalone PUF variable; HLT_OCSTROKE used | HLT_OCSTROKE likely includes hemorrhagic stroke; minimal impact |
 | ADRD = `hlth_adrd` (may be Alzheimer's only) | Pending confirmation vs. full ADRD spectrum | Treatment group may be slightly smaller if related dementias excluded |
 | Partial-year MA exclusion approximated | Cross-sectional PUF; cannot link to prior year | Small bias; sensitivity test (eFig2: ins_mayrs≥3) shows magnitude |
-| eTable 1 typo: negative upper CI for pre-2020 | Supplement sign error; we report correct CIs | No impact on point estimates |
+| eTable 3 typo: 2015 upper CI printed as −0.0433 | Confirmed present in final GLO DP No. 1716 publication | Correct value = +0.0433; no impact on point estimates or our replication |
 | Proxy × covariates full interaction | Computationally intensive; main DiD uses year FE directly | Minimal impact on DiD coefficient; SE may differ slightly |
 
 ---
