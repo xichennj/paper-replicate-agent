@@ -88,3 +88,7 @@ When a mistake is corrected, append a `[LEARN:category]` entry below.
 [LEARN:replication] Residual N gaps after exhaustive filter testing (usually ~3%) most likely reflect an unpublished data-quality exclusion in the research-grade file (e.g., withdrawal list) not available in the PUF. Document this as unavoidable; verify that ADRD share and DiD direction are preserved.
 
 [LEARN:replication] When testing N-filter combinations for MCBS-style DiD studies, systematically audit: MA variant × years-enrolled threshold × dual-eligibility × FFS exclusion × community-dwelling — in that order. Use a `build_sample()` helper that accepts the MA variable as a parameter.
+
+[LEARN:replication] Working-paper eTable numbers can shift in the published version. Fu et al.: WP "eTable 1" (event study) became "eTable 3" in GLO DP No. 1716; two new eTables (raw means by year, pre/post summary) were added as eTables 1 & 2. Always cross-check supplement table numbers against the final published version before finalising replication targets.
+
+[LEARN:replication] Fu et al. (2024) published as GLO Discussion Paper No. 1716 (2026). All core DiD and event-study numbers confirmed identical to working paper draft → replication score 82/100 validated against final publication. Official package: Stata 19.5 + `reghdfe`, `Dropbox/replication_pkg`; MA filter confirmed as `ins_ma2 == 1` (not `ins_ma`).
