@@ -92,3 +92,5 @@ When a mistake is corrected, append a `[LEARN:category]` entry below.
 [LEARN:replication] Working-paper eTable numbers can shift in the published version. Fu et al.: WP "eTable 1" (event study) became "eTable 3" in GLO DP No. 1716; two new eTables (raw means by year, pre/post summary) were added as eTables 1 & 2. Always cross-check supplement table numbers against the final published version before finalising replication targets.
 
 [LEARN:replication] Fu et al. (2024) published as GLO Discussion Paper No. 1716 (2026). All core DiD and event-study numbers confirmed identical to working paper draft → replication score 82/100 validated against final publication. Official package: Stata 19.5 + `reghdfe`, `Dropbox/replication_pkg`; MA filter confirmed as `ins_ma2 == 1` (not `ins_ma`).
+
+[LEARN:replication] Fu et al. code quality score: 100/100 after replacing hardcoded `DATA_PATH <- "C:/..."` with `here("data", ...)`. Single hardcoded path was the only rubric deduction; fix took one line. Always use `here()` for all data/output paths from the start.
