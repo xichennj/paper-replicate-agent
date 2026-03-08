@@ -71,6 +71,20 @@ When a mistake is corrected, append a `[LEARN:category]` entry below.
 
 [LEARN:meta] Template development work (building infrastructure, docs) doesn't create session logs in quality_reports/ → those are for user work (slides, analysis), not meta-work. Keeps template clean for users who fork.
 
+## Manuscript Editing & Submission Workflow
+
+[LEARN:manuscripts] `manuscripts/` folder created for authored works (correspondence, abstracts, cover letters, letters). Distinct from `papers/` (papers being replicated) and `reports/` (replication reports).
+
+[LEARN:manuscripts] python-docx editing pattern: (1) inspect runs with `para.runs` + `run.font.superscript` before editing; (2) use `clear_runs(para)` + `para.add_run(text)` to rebuild; (3) Unicode curly quotes (\u2018/\u2019), em dash (\u2014), ≥ (\u2265) render garbled in Windows console but are correctly stored — verify with `[hex(ord(c)) for c in text]` not print output.
+
+[LEARN:manuscripts] Track changes in python-docx: use `w:del` + `w:delText` for deletions, `w:ins` + `w:t` for insertions, both with `w:id`, `w:author`, `w:date` attributes. Place as siblings of `w:r` within `w:p`. `para.text` does NOT include text inside `w:ins` elements — verify with XML inspection (`p.findall('.//' + qn('w:del'))`), not para.text.
+
+[LEARN:manuscripts] Nature Health correspondence limits: ≤1,000 words, ≤10 references, display items discouraged. Chief Editor: Dr. Ben Johnson (PhD, infectious disease background; interests: health equity, global south, policy impact). Submission portal: nature.com/naturehealth → Submit a Manuscript. Editorial email: health@nature.com.
+
+[LEARN:manuscripts] GSA Annual Meeting abstract limits: ≤100 chars title (including spaces), ≤250 words abstract, two learning objectives required. Submission fee $50 (paper/poster). 2026 deadline was March 5.
+
+[LEARN:manuscripts] Cover letter strategy for Nature journals: open with stakes (not "we are pleased to submit"), name the gap precisely, cite papers already published in that journal, connect to editor's known interests, state word count and refs last. No flattery.
+
 ## R Coding Patterns
 
 [LEARN:r-coding] `coeftest()` returns a matrix with class attributes, NOT a data frame. Never use `as.data.frame(coeftest(...))` — rownames are lost. Always index directly: `ct[idx, "Estimate"]`, `ct[idx, "Std. Error"]`, etc. where `idx <- which(rownames(ct) == term_name)`.
