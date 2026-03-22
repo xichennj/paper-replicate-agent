@@ -2,7 +2,7 @@
 
 # UKB Empirical Replication Agent
 
-A structured Claude Code workflow for **empirically replicating published research** using UK Biobank (UKB) data, created by 朱晨 | 遗传社科研究. Special thanks to Pedro H. C. Sant'Anna for the claude-code-my-workflow repository, which inspired this workflow. You describe a paper; Claude plans the replication approach, writes R/Python scripts, validates outputs against published targets, documents discrepancies, and reports results — like a research contractor who handles the full pipeline.
+A structured Claude Code workflow for **empirically replicating published research**. Special thanks to Pedro H. C. Sant'Anna for the claude-code-my-workflow repository, which inspired this workflow. You describe a paper; Claude plans the replication approach, writes R/Python scripts, validates outputs against published targets, documents discrepancies, and reports results — like a research contractor who handles the full pipeline.
 
 ---
 
