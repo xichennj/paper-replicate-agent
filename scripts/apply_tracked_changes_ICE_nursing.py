@@ -20,7 +20,7 @@ OUTPUT = r'C:\Users\xc77\Dropbox\Claude\ICE_Nursing_home_v7_2026-05-16.docx'
 
 W_NS   = 'http://schemas.openxmlformats.org/wordprocessingml/2006/main'
 XML_NS = 'http://www.w3.org/XML/1998/namespace'
-AUTHOR = 'Claude Code'
+AUTHOR = 'Chen, Xi'
 DATE   = '2026-05-16T00:00:00Z'
 
 _cid = [200]
